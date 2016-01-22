@@ -1,5 +1,5 @@
 <?php
-/** Zurb Foundation Visual Editor for TinyMCE - v1.0.0
+/** Zurb Foundation Visual Editor for TinyMCE - v1.0.1
 * http://findsomewinmore.com/
 * Copyright (c) 2015; * Licensed GPLv2+ */
 

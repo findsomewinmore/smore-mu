@@ -1,4 +1,4 @@
-/** Zurb Foundation Visual Editor for TinyMCE - v1.0.0
+/** Zurb Foundation Visual Editor for TinyMCE - v1.0.1
 * http://findsomewinmore.com/
 * Copyright (c) 2015; * Licensed GPLv2+ */
 
@@ -17,7 +17,7 @@
             text    : 'Row',
             onclick : function ( e ) {
               var selected_text = ed.selection.getContent();
-              ed.insertContent( '<div class="row">' + selected_text + '</div>' );
+              ed.insertContent( '<div class="row" data-equalizer>' + selected_text + '</div>' );
             }
           },
           {
@@ -29,6 +29,12 @@
                   {
                     type: 'container',
                     html: "<p>"+ 'For each device width, select the number of columns you want.' +"</p><p>"+ "If you don't need one of the devices, leave it at 'No column'." +"</p>"
+                  },
+                  {
+                    type: 'checkbox',
+                    name: 'eq',
+                    label: 'Equalize Column Height',
+                    checked: false
                   },
                   {
                     type: 'listbox',
@@ -214,7 +220,8 @@
                 onsubmit: function( e ) {
 
                   var grid = [],
-                  selected_text = ed.selection.getContent();
+                  selected_text = ed.selection.getContent(),
+                  equalize = e.data.eq ? 'data-equalizer-watch' : '';
 
                   if(e.data.small && e.data.small !== '0')
                   grid.push('small-' + e.data.small);
@@ -245,7 +252,7 @@
 
                   var cols = grid.join(' ');
 
-                  ed.insertContent( '<div class="columns '+ cols +'">' + selected_text + '</div>' );
+                  ed.insertContent( '<div class="columns '+ cols +'" '+equalize+'>' + selected_text + '</div>' );
                 }
               });
             }
